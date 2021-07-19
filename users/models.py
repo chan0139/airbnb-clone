@@ -33,7 +33,7 @@ class User(AbstractUser):  # AbstractUser class 상속
         (CURRENCY_KRW, "Krw"),
     )
     
-    avatar = models.ImageField(blank = True) #blank는 form , null 은 DB에 적용
+    avatar = models.ImageField(upload_to = "avatars",blank = True) #blank는 form , null 은 DB에 적용
     gender = models.CharField(choices =GENDER_CHOICES,max_length=10, blank = True)
     bio = models.TextField(blank = True)
     birthdate = models.DateField(null=True)

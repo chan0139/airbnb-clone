@@ -5,4 +5,12 @@ from . import models
 class ListAdmin(admin.ModelAdmin):
 
     """ List Admin Definition"""
-    pass
+    list_display = (
+        "name",
+        "user",
+        "count_rooms" 
+    )
+
+    search_fields = ("^name",)
+
+    filter_horizontal = ("rooms",)  #다중 선택 용이하게
