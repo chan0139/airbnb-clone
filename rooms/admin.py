@@ -14,14 +14,19 @@ class ItemAdmin(admin.ModelAdmin):
     def used_by(self, obj):
         return obj.rooms.count()
     
+class PhotoInline(admin.TabularInline):
+
+    model = models.Photo
 
 @admin.register(models.Room)
 class RoomAdmin(admin.ModelAdmin):
 
+    inlines = (PhotoInline,)
+    
     fieldsets = (
         (
             "Basic Info",
-            {"fields": ("name", "description", "country", "address", "price")},
+            {"fields": ("name", "description", "country", "city", "address", "price")},
         ),
         (
             "Time",
@@ -29,7 +34,7 @@ class RoomAdmin(admin.ModelAdmin):
         ),
         (
             "Spaces",
-            {"fields": ("guests", "beds", "bedrooms", "bathrooms")},
+            {"fields": ("guests", "beds", "bedrooms", "baths")},
         ),
         (
             "More About the Spaces",
@@ -51,7 +56,7 @@ class RoomAdmin(admin.ModelAdmin):
         "guests",
         "beds",
         "bedrooms",
-        "bathrooms",
+        "baths",
         "check_in",
         "check_out",
         "instant_book",
@@ -73,6 +78,8 @@ class RoomAdmin(admin.ModelAdmin):
         "city",
         "country",
     )
+
+    raw_id_fields = ("host",)
 
     filter_horizontal = (
         "amenities",
