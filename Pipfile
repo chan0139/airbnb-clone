@@ -9,6 +9,7 @@ pillow = "==8.0.0"
 django-countries = "*"
 django-seed = "*"
 django-dotenv = "*"
+requests = "*"
 
 [dev-packages]
 flake8 = "*"
